@@ -1,8 +1,10 @@
 function App() {
 
   return (
-    <div>
-      Base folder 
+    <div
+      className="bg-white color-red"
+    >
+      NoteWoven 
     </div>
   )
 }
