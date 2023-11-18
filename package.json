@@ -1,0 +1,29 @@
+{
+  "name": "notewoven",
+  "version": "1.0.0",
+  "description": "Welcome to NoteWoven, an open-source note-taking and to-do app inspired by the functionality of Notion and Trello. NoteWoven seamlessly combines the flexibility of note-taking with the organization of task management, all in a sleek, user-friendly interface.",
+  "main": "server.ts",
+  "repository": "https://github.com/masterghost2002/NoteWoven.git",
+  "author": "Rakesh Dhariwal",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node ./dist/server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.9.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
