@@ -1,4 +1,4 @@
-# NoteWoven
+# NoteWovenPrerequisites
 
 Welcome to NoteWoven, an open-source note-taking and to-do app inspired by the functionality of Notion and Trello. NoteWoven seamlessly combines the flexibility of note-taking with the organization of task management, all in a sleek, user-friendly interface.
 
@@ -34,23 +34,23 @@ Welcome to NoteWoven, an open-source note-taking and to-do app inspired by the f
 2. **Install Backend Dependencies**
    ```bash
    cd backend
-   npm install
+   yarn install
    ```
 
 3. **Start the Backend Server**
    ```bash
-   npm start
+   yarn start
    ```
 
 4. **Install Frontend Dependencies**
    ```bash
    cd ../frontend
-   npm install
+   yarn install
    ```
 
 5. **Start the Frontend Application**
    ```bash
-   npm start
+   yarn start
    ```
 
 Now, visit `http://localhost:3000` in your browser to see NoteWoven in action!
