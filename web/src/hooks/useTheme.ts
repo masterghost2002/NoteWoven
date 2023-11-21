@@ -1,7 +1,7 @@
 
 // Custom hook to which provide theme switch functionality
 import { useEffect } from "react";
-import { themeType } from "../../types/types.d";
+import { themeType } from "@types";
 // global reference to darkMedia 
 let darkMediaGLOBAL:MediaQueryList | null = null;
 

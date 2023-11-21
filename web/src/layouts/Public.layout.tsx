@@ -1,27 +1,23 @@
-import React from "react";
 import Footer from "@/components/footer/Footer";
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
+import { Outlet } from "react-router-dom";
+export default function PublicLayout() {
   return (
     <div
       className="
-        h-screen 
-        w-screen 
         flex 
         flex-col 
-        items-center 
-        justify-center
+        h-screen 
+        max-h-screen
+        font-ma
         dark:bg-dark-gray
         dark:text-white
-        relative
       "
     >
-      <div
+      <header
         className="
           w-full 
-          min-h-[60px]
-          self-start
-          absolute
-          top-0
+          min-h-[60px] 
+          flex-shrink-0
           p-5
           "
       >
@@ -33,21 +29,20 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         >
           NoteWoven
         </h1>
-      </div>
-      <div
+      </header>
+      <main
         className="
-          text-center
-          p-5
-          md:w-1/4
-          text-[16px]
-          font-[500]
-          text-light-normal-text
+        flex-grow 
+        flex 
+        flex-col 
+        items-center 
+        justify-center
+        p-5
         "
       >
-        Welcome to NoteWoven, where your notes and tasks intertwine seamlessly. Discover the art of organized creativity!
-      </div>
-      {children}
-      <Footer/>
+        <Outlet/>
+      </main>
+      <Footer />
     </div>
   )
 }

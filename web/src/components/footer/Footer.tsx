@@ -1,18 +1,22 @@
 export default function Footer() {
   return (
-    <div
+    <footer
+      className="
+      min-h-[60px] 
+      flex-shrink-0
+      p-5
+      "
+    >
+      <div
         className="
-            absolute
-            bottom-0
-            p-5
-            w-full
             text-center
             text-[12px]
             font-bold
             text-light-normal-text
         "
-    >
+      >
         @2023 NoteWoven
-    </div>
+      </div>
+    </footer>
   )
 }
