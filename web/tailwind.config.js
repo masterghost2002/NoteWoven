@@ -16,7 +16,22 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        'ma': ['Manrope', 'sans-serif'],
+      },
       colors: {
+        // custom colors for NoteWoven
+
+        // dark theme
+        'light-gray':'#191919',
+        'dark-gray':'#202020',
+        'dark-selected-text':'#D8D8D8',
+        'dark-normal-text':'#838383',
+
+        // light theme
+        'light-dark':'#FBFBFA',
+        'light-selected-text':'#37352F',
+        'light-normal-text':'#A3A29E',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

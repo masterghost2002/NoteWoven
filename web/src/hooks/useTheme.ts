@@ -17,7 +17,7 @@ function mediaListener(ev: MediaQueryListEvent) {
 // a small utility function to return the theme from localStorage in form of themeType
 function getThemeFromLocalStorage():themeType{
     const theme = localStorage.getItem(themeKey);
-    if(!theme || theme === 'light') return themeType.light;
+    if(theme === 'light') return themeType.light;
     if(theme === 'dark') return themeType.dark;
     return themeType.system;
 }
