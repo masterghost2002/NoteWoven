@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import prisma from '../../prisma';
 import ApiResponse from '../../util/Api/ApiResponse';
 import serverSetupFields from './validation.zod';
+import cryptr from '../../util/cryptr';
 const POST = async (req: Request, res: Response) => {
     const serverData = req.body.serverData;
     // check is the setup is already done
@@ -19,6 +20,10 @@ const POST = async (req: Request, res: Response) => {
         const parsedServerData = serverSetupFields.safeParse(serverData);
         if (!parsedServerData.success)
             return res.status(400).json(new ApiResponse(400, parsedServerData.error.errors, 'Invalid Data fields'));
+
+        // hash the password
+        const hashPassword =  cryptr.encrypt(parsedServerData.data.password);
+        parsedServerData.data.password = hashPassword;
         const data = await prisma.$transaction(async (transaction) => {
             const adminUser = await transaction.user.create({
                 data: {
@@ -40,7 +45,8 @@ const POST = async (req: Request, res: Response) => {
             });
             return adminUser;
         });
-        return res.status(200).json(new ApiResponse(200, data, 'Server setup succed'));
+        const {password, ...user} = data;
+        return res.status(200).json(new ApiResponse(200, user, 'Server setup succed'));
     } catch (error) {
         return res.status(500).json(new ApiResponse(500, {}, 'Internal Server Error'));
     }
