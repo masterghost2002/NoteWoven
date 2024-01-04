@@ -7,17 +7,26 @@
   "author": "Rakesh Dhariwal",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
+    "install-dev":"concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run install-server\" \"yarn run install-web\"",
+    "install-server": "yarn install",
+    "install-web": "cd web && yarn install",
+    "dev": "concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run server\" \"yarn run web\"",
+    "server": "nodemon", 
+    "web": "cd web && yarn run dev",
+    "build-dev": "concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run build-server\" \"yarn run build-web\"",
+    "build-server":"tsc",
+    "build-web":"cd web && tsc && vite build",
     "build": "tsc",
     "start": "node ./dist/server.js"
   },
   "engines": {
-    "node":">=18.0.0"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@prisma/client": "^5.6.0",
     "@types/cors": "^2.8.17",
     "bson": "^6.2.0",
+    "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cryptr": "^6.3.0",
