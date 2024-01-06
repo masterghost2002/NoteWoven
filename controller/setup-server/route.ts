@@ -27,8 +27,9 @@ const POST = async (req: Request, res: Response) => {
         const data = await prisma.$transaction(async (transaction) => {
             const adminUser = await transaction.user.create({
                 data: {
-                    email: parsedServerData.data.email,
-                    username: parsedServerData.data.username,
+                    email: parsedServerData.data.email.trim(),
+                    username: parsedServerData.data.username.trim(),
+                    fullname:parsedServerData.data.fullname.trim(),
                     password: parsedServerData.data.password,
                     profileUrl: parsedServerData.data.profileUrl ? parsedServerData.data.profileUrl : '',
                     admin: {

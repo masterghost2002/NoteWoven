@@ -29,7 +29,7 @@ export default function ServerSetup() {
             toast.dismiss(id);
             isLoading.value = false;
             setTimeout(() => {
-                navigate('/');
+                navigate('/welcome');
             }, 2000)
 
         } catch (error: any) {
@@ -39,7 +39,7 @@ export default function ServerSetup() {
             // if the server setup is already done navigate to login page
             if (error.response.status === 409)
                 setTimeout(() => {
-                    navigate('/');
+                    navigate('/welcome');
                 }, 2000);
         }
 

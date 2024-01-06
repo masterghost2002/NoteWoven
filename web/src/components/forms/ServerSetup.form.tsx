@@ -16,18 +16,31 @@ export default function ServerSetupForm({isLoading, onSubmit}:ServerSetupFormPro
     const form = useForm<ServerSetupFormType>({
         resolver: zodResolver(serverSetupFormSchema),
         defaultValues: {
+            fullname:"",
             username: "",
             email: "",
             bio: "",
             website: "",
             domainUrl: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
         },
     });
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full h-auto">
+            <FormField
+                    control={form.control}
+                    name="fullname"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormControl>
+                                <Input placeholder="fullname" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <FormField
                     control={form.control}
                     name="username"

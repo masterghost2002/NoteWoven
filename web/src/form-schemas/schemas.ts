@@ -13,6 +13,7 @@ const serverSetupFormSchema = z.object({
     username: z.string().min(2, {
         message: "Username must be at least 2 characters.",
     }).max(50, { message: "Username must no exceed 50 characters." }),
+    fullname:z.string().min(4, {message:"Full Name must be at least 4 characters"}).max(50, {message:"Full Name must not exceed 50 characters"}),
     email: z.string().email(),
     bio: z.string().min(2, { message: "Bio must me 2 char long" }).max(200, { message: "Bio must not exceed 200 character" }),
     website: z.string().url(),
