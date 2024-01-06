@@ -9,6 +9,7 @@ type UserStore = {
 const initialUser: UserType = {
     admin:null,
     id: '',
+    fullname:'',
     username: '',
     email: '',
     profileUrl: '',

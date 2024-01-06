@@ -17,6 +17,7 @@ type UserType = {
     readonly id:string,
     admin:AdminType | null,
     username:string,
+    fullname:string,
     email:string,
     profileUrl:string,
     theme:Theme,
