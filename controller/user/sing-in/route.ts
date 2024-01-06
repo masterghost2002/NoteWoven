@@ -3,6 +3,7 @@ import cryptr from '../../../util/cryptr';
 import prisma from '../../../prisma';
 import ApiResponse from '../../../util/Api/ApiResponse';
 import loginFields from './validation.zod';
+import generateToken from '../../../util/generateToken';
 const POST = async (req: Request, res: Response) => {
     const loginData = req.body.loginData;
     try {
@@ -28,7 +29,8 @@ const POST = async (req: Request, res: Response) => {
 
         if(decryptedPassword !== parsedLoginFields.data.password)
             return res.status(401).json(new ApiResponse(401, {}, 'Incorrect Password'));
-        return res.status(200).json(new ApiResponse(200, {user}, 'Login success'))
+        const accessToken = await generateToken(user);
+        return res.status(200).json(new ApiResponse(200, {...user, accessToken}, 'Login success'))
     } catch (error) {
         console.log('Error at controller/user/route',error);
         return res.status(500).json(new ApiResponse(500, {}, 'Internal server error'));

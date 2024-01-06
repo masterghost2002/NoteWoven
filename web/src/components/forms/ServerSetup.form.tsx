@@ -1,10 +1,5 @@
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-import axios from 'axios';
-import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signal } from "@preact/signals-react";
 import {
     Form,
     FormControl,
@@ -14,28 +9,12 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button"
-import config from "@/config";
+import { serverSetupFormSchema } from "@/form-schemas/schemas";
+import { ServerSetupFormType, ServerSetupFormProps } from "@/form-schemas/form.types";
 
-// form schema
-const formSchema = z.object({
-    username: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
-    }).max(50, { message: "Username must no exceed 50 characters." }),
-    email: z.string().email(),
-    bio: z.string().min(2, { message: "Bio must me 2 char long" }).max(200, { message: "Bio must not exceed 200 character" }),
-    website: z.string().url(),
-    domainUrl: z.string().url(),
-    password: z.string().min(8, { message: "Password must be 8 character long" }),
-});
-
-// signal states
-const isLoading = signal(false);
-export default function ServerSetupForm() {
-
-    const navigate = useNavigate();
-
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+export default function ServerSetupForm({isLoading, onSubmit}:ServerSetupFormProps) {
+    const form = useForm<ServerSetupFormType>({
+        resolver: zodResolver(serverSetupFormSchema),
         defaultValues: {
             username: "",
             email: "",
@@ -43,41 +22,9 @@ export default function ServerSetupForm() {
             website: "",
             domainUrl: "",
             password: "",
+            confirmPassword: ""
         },
     });
-    const onSubmit = async (values: z.infer<typeof formSchema>): Promise<void> => {
-        const id = toast.loading('Setting up server ...', {
-            classNames: {
-                toast: 'dark:!bg-light-gray dark:!text-white'
-            }
-        });
-        isLoading.value = true;
-        try {
-            await axios.post(`${config.serverUrl}/api/server/server-setup`, { serverData: values });
-            toast.success('Server setup is done. Redirecting to login page.', {
-                classNames: {
-                    toast: 'dark:!bg-light-gray dark:!text-white'
-                }
-            });
-            toast.dismiss(id);
-            isLoading.value = false;
-            setTimeout(() => {
-                navigate('/');
-            }, 2000)
-
-        } catch (error: any) {
-            toast.error(error.response.data.message);
-            toast.dismiss(id);
-            isLoading.value = false;
-
-            // if the server setup is already done navigate to login page
-            if (error.response.status === 409)
-                setTimeout(() => {
-                    navigate('/');
-                }, 2000);
-        }
-
-    }
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full h-auto">
@@ -112,6 +59,18 @@ export default function ServerSetupForm() {
                         <FormItem>
                             <FormControl>
                                 <Input placeholder="password" type="password" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="confirmPassword"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormControl>
+                                <Input placeholder="confirm password" type="password" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

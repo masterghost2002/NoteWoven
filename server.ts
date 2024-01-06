@@ -8,7 +8,7 @@ import config from './config/config';
 const PORT = process.env.PORT || 5000;
 const server = express();
 server.use(cors({
-    origin:config.clientUrl
+    origin:'*'
 }));
 server.use(express.json());
 

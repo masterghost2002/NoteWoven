@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -10,36 +9,28 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-
-// form schema
-const formSchema = z.object({
-    username: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
-    }).max(50, { message: "Username must no exceed 50 characters." }),
-    password: z.string().min(8, { message: "Password must be 8 character long" }),
-});
-
-//component
-export default function SignInForm() {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+import { SignInFormType, SignInFormProps } from "@/form-schemas/form.types";
+import { signInFormSchema } from "@/form-schemas/schemas";
+export default function SignInForm({isLoading, onSubmit}:SignInFormProps) {
+    const form = useForm<SignInFormType>({
+        resolver: zodResolver(signInFormSchema),
         defaultValues: {
-            username: "",
+            credential: "",
+            password: ""
         },
     });
-    const onSubmit = (values: z.infer<typeof formSchema>): void => {
-        console.log(values);
-    }
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full h-auto">
                 <FormField
                     control={form.control}
-                    name="username"
+                    name="credential"
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input placeholder="username or email" {...field} />
+                                <Input
+                                    placeholder="username or email" {...field}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -57,7 +48,13 @@ export default function SignInForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="w-full">Sign In</Button>
+                <Button 
+                    type="submit" 
+                    className="w-full"
+                    disabled = {isLoading.value}
+                >
+                    Sign In
+                </Button>
             </form>
         </Form>
     )
