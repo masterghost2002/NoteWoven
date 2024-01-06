@@ -1,6 +1,7 @@
-import SignInForm from "@/components/forms/SignIn.form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { signal } from "@preact/signals-react";
+import SignInForm from "@/components/forms/SignIn.form";
 import api from "@/util/ApiHandler";
 import { SignInFormType } from "@/form-schemas/form.types";
 import { UserType } from "@types";
@@ -9,7 +10,7 @@ import useUserStore from "@/store/userUserStore";
 // component and its state
 const isLoading = signal(false);
 export default function SignInPage() {
-
+    const navigate = useNavigate();
     //user store
     const setUser = useUserStore(state=>state.setUser);
 
@@ -30,6 +31,7 @@ export default function SignInPage() {
                 }
             });
             toast.dismiss(id);
+            navigate("/dashboard")
         } catch (error:any) {
             
             toast.error(error.response.data.message);
