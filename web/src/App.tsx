@@ -4,6 +4,7 @@ import ProtectedLayout from './layouts/Protected.layout';
 import SignInPage from '@/pages/SignIn.page';
 import ServerSetup from '@/pages/ServerSetup.page';
 import DashboardPage from './pages/Dashboard.page';
+import ProfileSettings from './pages/ProfileSettings';
 function App() {
   return (
     <Routes>
@@ -20,6 +21,10 @@ function App() {
       <Route
         path='/' element={<ProtectedLayout />}
       >
+        <Route
+          path='profile-settings'
+          element={<ProfileSettings />}
+          />
         <Route
           path='dashboard'
           element={<DashboardPage />}

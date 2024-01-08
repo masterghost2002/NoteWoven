@@ -49,3 +49,4 @@ const useTheme = () => {
     return setTheme;
 };
 export default useTheme;
+export {setTheme};

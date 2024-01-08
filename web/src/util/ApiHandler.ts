@@ -7,4 +7,13 @@ const api: AxiosInstance = axios.create({
     'Content-Type': 'application/json',
   },
 });
+function createAxiosInstance(accessToken:string | null = null) {
+    return axios.create({
+        baseURL: config.serverUrl,
+        headers: {
+            'accesstoken': `Bearer ${accessToken}`
+        }
+    });
+}
+export {createAxiosInstance};
 export default api;
