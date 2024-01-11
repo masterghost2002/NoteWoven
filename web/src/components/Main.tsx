@@ -5,6 +5,8 @@ export default function Main() {
         className="
           flex-grow 
           overflow-auto 
+          dark:bg-light-gray
+          bg-light-dark
         "
     >
         <Outlet/>

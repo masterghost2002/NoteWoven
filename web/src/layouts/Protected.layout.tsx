@@ -56,14 +56,18 @@ const ProtectedLayout = () => {
 
             />
             <div
-                className="flex flex-col flex-grow"
+                className="
+                    flex 
+                    flex-col 
+                    flex-grow
+                "
             >
                 <Header
 
                 />
 
                 <Main
-
+                        
                 />
             </div>
         </div>
