@@ -29,7 +29,7 @@ const POST = async (req: Request, res: Response) => {
 
         if(decryptedPassword !== parsedLoginFields.data.password)
             return res.status(401).json(new ApiResponse(401, {}, 'Incorrect Password'));
-        const accessToken = await generateToken(user);
+        const accessToken = await generateToken({username:user.username,email:user.email, id:user.id});
         return res.status(200).json(new ApiResponse(200, {...user, accessToken}, 'Login success'))
     } catch (error) {
         console.log('Error at controller/user/route',error);

@@ -2,9 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express, {Request, Response } from 'express';
 import SERVERROUTES from './routes/server/route';
-import USERROUTES from './routes/user/route';
+import USERROUTES from './routes/user/routes';
 import cors from 'cors';
-import config from './config/config';
 const PORT = process.env.PORT || 5000;
 const server = express();
 server.use(cors({
