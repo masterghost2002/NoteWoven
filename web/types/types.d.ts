@@ -23,7 +23,7 @@ type UserType = {
     theme:Theme,
     devices:Array<object>,
     accessToken:string,
-    createdAt:Date,
-    updatedAt:Date,
+    createdAt:string,
+    updatedAt:string,
 }
 export {UserType,Theme}

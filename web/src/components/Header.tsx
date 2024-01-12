@@ -1,4 +1,3 @@
-import ThemeSwitcher from "./ThemeSwitcher"
 import Mobilenavbar from "./navigation/Mobilenavbar"
 export default function Header() {
   return (
@@ -6,7 +5,8 @@ export default function Header() {
         className={
           `
           w-full
-          min-h-[60px] 
+          min-h-[30px]
+          md:min-h-[60px] 
           flex-shrink-0
           flex
           items-center
@@ -23,15 +23,14 @@ export default function Header() {
         <Mobilenavbar
 
         />
-        <h1
+        <span
           className="
-            text-[20px]
+            text-[16px]
             font-bold
           "
         >
           NoteWoven
-        </h1>
-        <ThemeSwitcher/>
+        </span>
       </header>
   )
 }
