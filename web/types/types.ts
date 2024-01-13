@@ -1,7 +1,7 @@
 enum themeType{
     dark = 'dark',
     light = 'light',
-    system = 'sysytem'
+    system = 'system'
 }
 export {themeType};
 type Theme = 'dark' | 'light' | 'system'
