@@ -1,4 +1,3 @@
-"use client";
 import { memo } from 'react';
 import { DateTime } from 'luxon';
 import ProfilePicker from './ProfilePicker';

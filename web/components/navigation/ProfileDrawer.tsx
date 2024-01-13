@@ -42,6 +42,8 @@ const Profile = ({ user }: { user: UserType }) => {
                 className="h-10 w-10 rounded-full object-cover"
                 width={16}
                 height={16}
+                objectFit="cover"
+                loading="lazy"
             />
 
             <div>

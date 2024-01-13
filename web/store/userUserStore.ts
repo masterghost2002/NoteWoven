@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { UserType } from '@types';
+import { UserType } from '@/types/types';
 type UserStore = {
     user: UserType,
     setUser: (data: UserType) => void,

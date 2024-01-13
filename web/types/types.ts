@@ -26,4 +26,4 @@ type UserType = {
     createdAt:string,
     updatedAt:string,
 }
-export {UserType,Theme}
+export type {UserType,Theme}
