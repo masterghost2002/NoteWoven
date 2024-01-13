@@ -15,7 +15,6 @@
     "web": "cd web && yarn run dev",
     "build-dev": "concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run build-server\" \"yarn run build-web\"",
     "build-server": "tsc",
-    "build-web": "cd web && tsc && vite build",
     "build": "tsc",
     "start": "node ./dist/server.js"
   },
