@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from "react";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { signal } from "@preact/signals-react";
 import Header from "@/components/Header";
@@ -13,7 +13,7 @@ const isValidating = signal(false);
 const ProtectedLayout = () => {
     // get user from store
     const user = useUserStore(state => state.user);
-    const setUser = useUserStore(state=>state.setUser);
+    const setUser = useUserStore(state => state.setUser);
     const accessToken = user.accessToken;
 
     // 
@@ -25,7 +25,7 @@ const ProtectedLayout = () => {
 
         try {
             const response = await api.post('/api/user/renew-token');
-            const user:UserType = response.data.data;
+            const user: UserType = response.data.data;
             setUser(user);
             isValidating.value = false;
         } catch (error: any) {
@@ -37,7 +37,7 @@ const ProtectedLayout = () => {
                 navigate('/welcome');
         }
 
-    }, [accessToken, navigate, toast,setUser]);
+    }, [accessToken, navigate, toast, setUser]);
 
     useEffect(() => {
         validateToken();
@@ -52,6 +52,10 @@ const ProtectedLayout = () => {
                 flex
             "
         >
+            <Toaster
+                position="top-center"
+                richColors={true}
+            />
             <Sidenavbar
 
             />
@@ -67,7 +71,7 @@ const ProtectedLayout = () => {
                 />
 
                 <Main
-                        
+
                 />
             </div>
         </div>
