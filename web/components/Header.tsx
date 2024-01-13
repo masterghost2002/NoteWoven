@@ -1,4 +1,5 @@
-import Mobilenavbar from "./navigation/Mobilenavbar"
+import Mobilenavbar from "./navigation/Mobilenavbar";
+import ThemeSwitcher from "./ThemeSwitcher";
 export default function Header() {
   return (
     <header
@@ -31,6 +32,7 @@ export default function Header() {
         >
           NoteWoven
         </span>
+        <ThemeSwitcher />
       </header>
   )
 }
