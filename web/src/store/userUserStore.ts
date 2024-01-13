@@ -16,8 +16,8 @@ const initialUser: UserType = {
     theme: 'system',
     devices: [],
     accessToken: '',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: '',
+    updatedAt: '',
 }
 const useUserStore = create<UserStore>()(
     persist(
