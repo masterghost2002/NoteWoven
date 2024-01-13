@@ -1,10 +1,20 @@
-import { Pencil } from 'lucide-react'
+import { Pencil } from 'lucide-react';
+import {DummyProfile} from '@/constants/UserInfoTemp';
 const profileInputId = 'profile-picker-input';
-export default function ProfilePicker() {
+type Props = {
+  profileUrl: string,
+  handleUpdateProfile: (newProfileImage: File) => Promise<void>
+}
+export default function ProfilePicker({profileUrl, handleUpdateProfile}: Props) {
   const onClickProfileButton = () => {
     const profileInput = document.getElementById(profileInputId);
     if (!profileInput) return;
     profileInput.click();
+  }
+  const handleOnChangeProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newProfileImage = e.target.files?.[0];
+    if (!newProfileImage) return;
+    handleUpdateProfile(newProfileImage);
   }
   return (
     <div className="sm:shrink-0 my-2">
@@ -14,7 +24,7 @@ export default function ProfilePicker() {
       >
         <img
           alt="Paul Clapton"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+          src={profileUrl && profileUrl.length > 0 ? profileUrl : DummyProfile}
           className="h-16 w-16 rounded-lg object-cover shadow-sm"
         />
         <Pencil
@@ -30,6 +40,7 @@ export default function ProfilePicker() {
         className="hidden"
         type="file"
         id={profileInputId}
+        onChange={handleOnChangeProfile}
       >
       </input>
     </div>

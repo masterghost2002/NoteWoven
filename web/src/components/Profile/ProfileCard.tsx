@@ -14,9 +14,10 @@ type Props = {
     profileUrl: string,
     fullname: string,
     joinedAt: string,
-    lastUpdatedAt: string
+    lastUpdatedAt: string,
+    handleUpdateProfile: (newProfileImage: File)=>Promise<void>
 }
-const ProfileCard = ({ username, email, profileUrl, joinedAt, lastUpdatedAt, fullname }: Props) => {
+const ProfileCard = ({ username, email, profileUrl, joinedAt, lastUpdatedAt, fullname, handleUpdateProfile }: Props) => {
     const joinedDate = DateTime.fromISO(joinedAt);
     const lastUpadtedAtDate = DateTime.fromISO(lastUpdatedAt);
     return (
@@ -68,7 +69,8 @@ const ProfileCard = ({ username, email, profileUrl, joinedAt, lastUpdatedAt, ful
                 </div>
 
                 <ProfilePicker
-
+                    profileUrl={profileUrl}
+                    handleUpdateProfile={handleUpdateProfile}
                 />
             </div>
 
