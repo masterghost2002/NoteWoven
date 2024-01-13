@@ -9,6 +9,7 @@ import {
     DrawerTrigger,
     DrawerClose
 } from "@/components/ui/drawer";
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Cog, LogOut } from 'lucide-react';
 import IconButton from '../ui/iconbutton';
@@ -16,7 +17,7 @@ import { UserType } from "@/types/types";
 import IconThemeSwitcher from "./IconThemeSwitcher";
 import useUserStore from "@/store/userUserStore";
 type Props = {
-    setHandleSheet: React.Dispatch<React.SetStateAction<boolean>>
+    setHandleSheet?: React.Dispatch<React.SetStateAction<boolean>>
 }
 const Profile = ({ user }: { user: UserType }) => {
     return (
@@ -35,10 +36,12 @@ const Profile = ({ user }: { user: UserType }) => {
             hover:bg-gray-50
             dark:hover:bg-dark-gray
             ">
-            <img
+            <Image
                 alt="Man"
                 src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
                 className="h-10 w-10 rounded-full object-cover"
+                width={16}
+                height={16}
             />
 
             <div>
@@ -63,7 +66,8 @@ const ProfileDrawer = ({ setHandleSheet }: Props) => {
         window.location.reload();
     };
     const handleSettingsClick = () => {
-        setHandleSheet(false);
+        if (setHandleSheet)
+            setHandleSheet(false);
         router.push('/profile-settings');
     }
     return (

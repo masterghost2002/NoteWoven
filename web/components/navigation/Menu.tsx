@@ -1,6 +1,6 @@
 import ProfileDrawer from "./ProfileDrawer"
 type Props = {
-  setHandleSheet:React.Dispatch<React.SetStateAction<boolean>>
+  setHandleSheet?:React.Dispatch<React.SetStateAction<boolean>>
 }
 export default function Menu({setHandleSheet}:Props){
   return (

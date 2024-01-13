@@ -1,5 +1,6 @@
 "use client";
 import { Pencil } from 'lucide-react';
+import Image from 'next/image';
 import {DummyProfile} from '@/constants/UserInfoTemp';
 const profileInputId = 'profile-picker-input';
 type Props = {
@@ -23,10 +24,14 @@ export default function ProfilePicker({profileUrl, handleUpdateProfile}: Props) 
         onClick={onClickProfileButton}
         className='relative'
       >
-        <img
+        <Image
           alt="Paul Clapton"
           src={profileUrl && profileUrl.length > 0 ? profileUrl : DummyProfile}
           className="h-16 w-16 rounded-lg object-cover shadow-sm"
+          width={16}
+          height={16}
+          objectFit="cover"
+          loading="lazy"
         />
         <Pencil
           className='
