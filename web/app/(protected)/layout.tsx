@@ -3,7 +3,7 @@ import { useEffect, useCallback, useState, useMemo } from "react";
 import { toast, Toaster } from "sonner";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
-import useUserStore from "@/store/userUserStore";
+import useUserStore from "@/store/useUserStore";
 import { UserType } from "@/types/types";
 import { createAxiosInstance } from "@/util/ApiHandler";
 export default function RootLayout({

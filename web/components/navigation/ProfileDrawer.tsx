@@ -15,7 +15,7 @@ import { Cog, LogOut } from 'lucide-react';
 import IconButton from '../ui/iconbutton';
 import { UserType } from "@/types/types";
 import IconThemeSwitcher from "./IconThemeSwitcher";
-import useUserStore from "@/store/userUserStore";
+import useUserStore from "@/store/useUserStore";
 type Props = {
     setHandleSheet?: React.Dispatch<React.SetStateAction<boolean>>
 }

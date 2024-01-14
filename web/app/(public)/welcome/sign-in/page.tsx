@@ -6,7 +6,7 @@ import SignInForm from "@/components/forms/SignIn.form";
 import api from "@/util/ApiHandler";
 import { SignInFormType } from "@/form-schemas/form.types";
 import { UserType } from "@/types/types";
-import useUserStore from "@/store/userUserStore";
+import useUserStore from "@/store/useUserStore";
 // component and its state
 export default function SignInPage() {
     const [isLoading, setIsLoading] = useState(false);
