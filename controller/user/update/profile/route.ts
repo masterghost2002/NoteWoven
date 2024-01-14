@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import prisma from "../../../../prisma";
 import ApiResponse from "../../../../util/Api/ApiResponse";
+import config from "../../../../config/config";
 const PUT = async (req: Request, res: Response) => {
     const user = req.userCredentials;
     const profilePath = req.file?.path;
@@ -9,7 +10,7 @@ const PUT = async (req: Request, res: Response) => {
     if (!user)
         return res.status(401).json(new ApiResponse(401, {}, 'Unauthorized'));
     const paths = profilePath?.split('/');
-    const path = paths[paths.length-2] + '/' + paths[paths.length-1];    
+    const path = config.serverOrigin + '/'+ paths[paths.length-2] + '/' + paths[paths.length-1];    
     try {
         const updatedUser = await prisma.user.update({
             where: {
