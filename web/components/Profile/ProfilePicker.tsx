@@ -27,11 +27,10 @@ export default function ProfilePicker({profileUrl, handleUpdateProfile}: Props) 
         <Image
           alt="Paul Clapton"
           src={profileUrl && profileUrl.length > 0 ? profileUrl : DummyProfile}
-          className="h-16 w-16 rounded-lg object-cover shadow-sm"
-          width={16}
-          height={16}
-          objectFit="cover"
-          loading="lazy"
+          className="h-[80px] w-[80px] rounded-lg object-cover shadow-sm"
+          width={80}
+          height={80}
+          priority = {true}
         />
         <Pencil
           className='
