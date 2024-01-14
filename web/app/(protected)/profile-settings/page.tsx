@@ -1,10 +1,11 @@
 "use client";
 import ProfileCard from "@/components/Profile/ProfileCard";
 import useUserStore from "@/store/userUserStore";
+import useSyncStore from "@/store/useSyncStore";
 import { toast } from "sonner";
 const MAX_FILE_SIZE = 10485760; // 10MB
 export default function ProfileSettingsPage() {
-  const user = useUserStore(state => state.user);
+  const user = useSyncStore(useUserStore, (state) => state.user);  
   const handleUpdateProfile = async (newProfileImage: File) => {
     if (!newProfileImage.type.startsWith('image/')) {
       toast.error('Profile must be an image');
@@ -14,8 +15,8 @@ export default function ProfileSettingsPage() {
       toast.error('Profile image must of less than 10MB in size');
       return;
     }
-
   }
+  if(!user) return null;
   return (
     <div
       className="

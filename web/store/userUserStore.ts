@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { UserType } from '@/types/types';
+import {useState, useEffect} from 'react'
 type UserStore = {
     user: UserType,
     setUser: (data: UserType) => void,
@@ -27,9 +28,22 @@ const useUserStore = create<UserStore>()(
             getAccessToken: () => get().user.accessToken
         }),
         {
-            name: 'user-data'
+            name: 'user-data',
         }
 
     )
 );
+const useUserSyncStore = <T>(
+    store: (callback: (state: T) => unknown) => unknown,
+    callback: (state: T) => UserType,
+  ) => {
+    const result = store(callback) as UserType
+    const [data, setData] = useState<UserType>(initialUser);
+  
+    useEffect(() => {
+      setData(result)
+    }, [result])
+    return data
+  }
+export {useUserSyncStore}
 export default useUserStore;
