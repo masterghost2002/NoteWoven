@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, useMemo } from "react";
 import { toast, Toaster } from "sonner";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
@@ -14,7 +14,7 @@ export default function RootLayout({
     // get user from store
     const user = useUserStore(state => state.user);
     const setUser = useUserStore(state => state.setUser);
-    const accessToken = user.accessToken;
+    const accessToken = useMemo(()=>user.accessToken, [user]);
 
     //navigation
     const router = useRouter();
@@ -23,6 +23,8 @@ export default function RootLayout({
     const [isValidating, setIsValidating] = useState(false);
 
     const validateToken = useCallback(async () => {
+        if (!accessToken) return;
+        console.log('validating token', accessToken);
         setIsValidating(true);
         const api = createAxiosInstance(accessToken);
 
@@ -40,7 +42,7 @@ export default function RootLayout({
                 router.push('/welcome/sign-in');
         }
 
-    }, [accessToken, toast, setUser]);
+    }, [router, router,accessToken, setUser]);
 
     useEffect(() => {
         validateToken();
