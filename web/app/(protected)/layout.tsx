@@ -3,6 +3,7 @@ import { useEffect, useCallback, useState, useMemo } from "react";
 import { toast, Toaster } from "sonner";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
+import Splash from "@/components/Splash";
 import useUserStore from "@/store/useUserStore";
 import { UserType } from "@/types/types";
 import { createAxiosInstance } from "@/util/ApiHandler";
@@ -20,7 +21,7 @@ export default function RootLayout({
     const router = useRouter();
 
     //state
-    const [isValidating, setIsValidating] = useState(false);
+    const [isValidating, setIsValidating] = useState(true);
 
     const validateToken = useCallback(async () => {
         if (!accessToken) return;
@@ -48,6 +49,8 @@ export default function RootLayout({
         validateToken();
     }, [validateToken]);
 
+    if(isValidating)
+        return <Splash />
     return (
         <div
             className="
