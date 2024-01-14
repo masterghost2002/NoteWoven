@@ -5,7 +5,8 @@ import {useState, useEffect} from 'react'
 type UserStore = {
     user: UserType,
     setUser: (data: UserType) => void,
-    getAccessToken: () => string
+    getAccessToken: () => string,
+    setProfile: (profileUrl: string) => void,
 }
 const initialUser: UserType = {
     admin:null,
@@ -25,7 +26,8 @@ const useUserStore = create<UserStore>()(
         (set, get) => ({
             user: initialUser,
             setUser: (data: UserType) => set({ user: data }),
-            getAccessToken: () => get().user.accessToken
+            getAccessToken: () => get().user.accessToken,
+            setProfile: (profileUrl: string) => set({user: {...get().user, profileUrl}}),
         }),
         {
             name: 'user-data',
