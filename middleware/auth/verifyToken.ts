@@ -16,6 +16,7 @@ const validateToken = async (req: Request, res: Response, next:NextFunction) => 
         if (!result || typeof result === 'string')
             return res.status(401).json(new ApiResponse(401, {}, 'Unauthorized'));
         req.userCredentials = result;
+        req.accessToken = accessToken;
         next();
     } catch (error) {
         console.log('Error at verifyToken middleware: ', error);

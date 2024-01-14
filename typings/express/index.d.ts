@@ -6,6 +6,7 @@ declare global {
     export interface Request {
       userCredentials?: JwtPayload;
       user?:UserType;
+      accessToken?:string;
     }
   }
 }
