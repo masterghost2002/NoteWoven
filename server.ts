@@ -4,6 +4,8 @@ import express, {Request, Response } from 'express';
 import SERVERROUTES from './routes/server/route';
 import USERROUTES from './routes/user/routes';
 import cors from 'cors';
+import path from 'path';
+const uploadFolder = path.join(__dirname, 'uploads');
 const PORT = process.env.PORT || 5000;
 const server = express();
 server.use(cors({
@@ -11,6 +13,7 @@ server.use(cors({
 }));
 server.use(express.json());
 
+server.use('/uploads', express.static(uploadFolder));
 server.use('/api/server', SERVERROUTES);
 server.use('/api/user', USERROUTES);
 server.get('/api/health', (req:Request, res:Response)=>res.status(200).json('Server is running'));
