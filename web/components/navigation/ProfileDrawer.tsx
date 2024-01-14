@@ -15,6 +15,7 @@ import { Cog, LogOut } from 'lucide-react';
 import IconButton from '../ui/iconbutton';
 import { UserType } from "@/types/types";
 import IconThemeSwitcher from "./IconThemeSwitcher";
+import { DummyProfile } from "@/constants/UserInfoTemp";
 import useUserStore from "@/store/useUserStore";
 type Props = {
     setHandleSheet?: React.Dispatch<React.SetStateAction<boolean>>
@@ -38,7 +39,7 @@ const Profile = ({ user }: { user: UserType }) => {
             ">
             <Image
                 alt="Man"
-                src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                src={user.profileUrl || DummyProfile}
                 className="h-[40px] w-[40px] rounded-full object-cover"
                 width={40}
                 height={40}
