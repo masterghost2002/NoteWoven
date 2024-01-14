@@ -7,5 +7,5 @@ import upload from '../../util/multer';
 const router = express.Router();
 router.post('/sign-in', GETUSER);
 router.post('/renew-token',validateToken, RENEWTOKEN);
-router.put('/update-profile', validateToken, upload.single('profile'), UPDATEPORFILE);
+router.put('/update/profile', validateToken, upload.single('profile'), UPDATEPORFILE);
 export default router;
