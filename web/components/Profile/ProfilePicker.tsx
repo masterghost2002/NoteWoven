@@ -5,9 +5,9 @@ import {DummyProfile} from '@/constants/UserInfoTemp';
 const profileInputId = 'profile-picker-input';
 type Props = {
   profileUrl: string,
-  handleUpdateProfile: (newProfileImage: File) => Promise<void>
+  onChangeProfile: (newProfileImage: File) => Promise<void>
 }
-export default function ProfilePicker({profileUrl, handleUpdateProfile}: Props) {
+export default function ProfilePicker({profileUrl, onChangeProfile}: Props) {
   const onClickProfileButton = () => {
     const profileInput = document.getElementById(profileInputId);
     if (!profileInput) return;
@@ -16,7 +16,7 @@ export default function ProfilePicker({profileUrl, handleUpdateProfile}: Props) 
   const handleOnChangeProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newProfileImage = e.target.files?.[0];
     if (!newProfileImage) return;
-    handleUpdateProfile(newProfileImage);
+    onChangeProfile(newProfileImage);
   }
   return (
     <div className="sm:shrink-0 my-2">

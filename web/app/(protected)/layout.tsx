@@ -15,7 +15,7 @@ export default function RootLayout({
     // get user from store
     const user = useUserStore(state => state.user);
     const setUser = useUserStore(state => state.setUser);
-    const accessToken = useMemo(()=>user.accessToken, [user]);
+    const accessToken = useMemo(()=>user?.accessToken, [user]);
 
     //navigation
     const router = useRouter();
@@ -25,10 +25,8 @@ export default function RootLayout({
 
     const validateToken = useCallback(async () => {
         if (!accessToken) return;
-        console.log('validating token', accessToken);
         setIsValidating(true);
         const api = createAxiosInstance(accessToken);
-
         try {
             const response = await api.post('/api/user/renew-token');
             const user: UserType = response.data.data;
@@ -63,6 +61,9 @@ export default function RootLayout({
             <Toaster
                 position="top-center"
                 richColors={true}
+                toastOptions={{
+                    className:'dark:!bg-light-gray dark:!text-white'
+                }}
             />
             {/* <Sidenavbar
 
