@@ -1,7 +1,7 @@
 import { User, Admin } from "@prisma/client"
 type Theme = 'dark' | 'light' | 'system'
 type UserWithoutPassword  = Omit<User, 'password'>;
-type JwtUserPayload{
+type JwtUserPayload = {
     id:string,
     username:string,
     email:string
