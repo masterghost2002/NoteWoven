@@ -1,5 +1,6 @@
 "use client";
 import ProfileCard from "@/components/Profile/ProfileCard";
+import UserInformation from "@/components/Profile/UserInformation";
 import useUserStore from "@/store/useUserStore";
 import { useUserSyncStore } from "@/store/useUserStore";
 export default function ProfileSettingsPage() {
@@ -31,6 +32,9 @@ export default function ProfileSettingsPage() {
         joinedAt={user.createdAt}
         lastUpdatedAt={user.updatedAt}
         onChangeProfile={onChangeProfile}
+      />
+      <UserInformation 
+        user={user} 
       />
     </div>
   )

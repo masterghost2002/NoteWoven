@@ -26,4 +26,4 @@ type UserType = {
     createdAt:string,
     updatedAt:string,
 } | undefined;
-export type {UserType,Theme}
+export type {UserType,Theme, AdminType}
