@@ -7,16 +7,24 @@
   "author": "Rakesh Dhariwal",
   "license": "MIT",
   "scripts": {
+    "precommit": "yarn run format && yarn run build-dev",
+    "format": "prettier --write .",
     "install-dev": "concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run install-server\" \"yarn run install-web\"",
     "install-server": "yarn install",
     "install-web": "cd web && yarn install",
     "dev": "concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run server\" \"yarn run web\"",
     "server": "nodemon",
     "web": "cd web && yarn run dev",
-    "build-dev": "concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run build-server\" \"yarn run build-web\"",
+    "build-dev": "yarn run build-server && yarn run build-web",
     "build-server": "tsc",
+    "build-web": "cd web && yarn run build",
     "build": "tsc",
     "start": "node ./dist/server.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run precommit"
+    }
   },
   "engines": {
     "node": ">=18.0.0"
@@ -41,7 +49,9 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/multer": "^1.4.11",
     "@types/node": "^20.9.1",
+    "husky": "^8.0.3",
     "nodemon": "^3.0.1",
+    "prettier": "^3.2.2",
     "prisma": "^5.7.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
