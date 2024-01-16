@@ -25,5 +25,5 @@ type UserType = {
     accessToken:string,
     createdAt:string,
     updatedAt:string,
-}
+} | undefined;
 export type {UserType,Theme}

@@ -20,7 +20,7 @@ import useUserStore from "@/store/useUserStore";
 type Props = {
     setHandleSheet?: React.Dispatch<React.SetStateAction<boolean>>
 }
-const Profile = ({ user }: { user: UserType }) => {
+const Profile = ({ user }: { user: UserType}) => {
     return (
         <div className="
             absolute 
@@ -39,7 +39,7 @@ const Profile = ({ user }: { user: UserType }) => {
             ">
             <Image
                 alt="Man"
-                src={user.profileUrl || DummyProfile}
+                src={user?.profileUrl || DummyProfile}
                 className="h-[40px] w-[40px] rounded-full object-cover"
                 width={40}
                 height={40}
@@ -49,11 +49,11 @@ const Profile = ({ user }: { user: UserType }) => {
             <div>
                 <p className="text-xs">
                     <strong className="block font-medium">
-                        {user.fullname || 'John Doe'}
+                        {user?.fullname || 'John Doe'}
                     </strong>
 
                     <span>
-                        {user.email || 'john_doe@notewoven.com'}
+                        {user?.email || 'john_doe@notewoven.com'}
                     </span>
                 </p>
             </div>
@@ -91,7 +91,7 @@ const ProfileDrawer = ({ setHandleSheet }: Props) => {
                     className="text-left"
                 >
                     <DrawerTitle>
-                        Hey, {user.fullname || 'John Doe'}
+                        Hey, {user?.fullname || 'John Doe'}
                     </DrawerTitle>
                     <DrawerDescription>
                         #PersonalizeYourProfile 🚀✨
@@ -131,7 +131,7 @@ const ProfileDrawer = ({ setHandleSheet }: Props) => {
                     "
                 >
 
-                    @{user.username || 'jogn_doe'}
+                    @{user?.username || 'jogn_doe'}
                 </DrawerFooter>
             </DrawerContent>
         </Drawer>
