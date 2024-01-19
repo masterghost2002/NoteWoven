@@ -7,6 +7,7 @@
   "author": "Rakesh Dhariwal",
   "license": "MIT",
   "scripts": {
+    "preinstall": "yarn add --ignore-scripts concurrently",
     "precommit": "yarn run format && yarn run build-dev",
     "format": "prettier --write .",
     "install-dev": "concurrently -n \"server,web\" -c \"bgBlue,bgGreen\" \"yarn run install-server\" \"yarn run install-web\"",
