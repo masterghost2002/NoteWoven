@@ -24,6 +24,7 @@ const ProfileCard = ({ username, email, profileUrl, joinedAt, lastUpdatedAt, ful
         <div
             className="
                 dark:bg-dark-gray
+                bg-white
                 relative 
                 block 
                 overflow-hidden 

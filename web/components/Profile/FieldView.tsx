@@ -1,10 +1,12 @@
-import { Pencil } from 'lucide-react';
-import { Button } from '../ui/button';
+import UpdateDialog from './UpdateDialog';
+import { UserUpdatableFieldType } from "@/types/types";
 type Props = {
     label: string;
     value: string;
+    name:UserUpdatableFieldType;
+    onUpdate:(value:string, updateFor:UserUpdatableFieldType)=>Promise<void>
 }
-const FieldView = ({ label, value }: Props) => {
+const FieldView = ({ label, value,name, onUpdate }: Props) => {
     return (
         <div
             className="flex items-center justify-between gap-4"
@@ -33,28 +35,14 @@ const FieldView = ({ label, value }: Props) => {
                     {value}
                 </div>
             </div>
-            <Button
-                className="
-                h-full
-                p-2
-                gap-2
-                text-black
-                dark:text-white
-                dark:bg-dark-gray
-                bg-gray-100
-                rounded-full
-                flex
-                flex-col
-                items-center
-                justify-center
-                hover:bg-transparent
-                active:bg-transparent
-            "
-            >
-                <div>
-                    <Pencil size={20} />
-                </div>
-            </Button>
+            <UpdateDialog
+                header={label}
+                label={label}
+                name = {name}
+                onSubmit = {onUpdate}
+                value={value}
+                isLoading={false}
+            />
         </div>
     )
 };

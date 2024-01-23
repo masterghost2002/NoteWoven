@@ -1,12 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { UserType } from '@/types/types';
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
+import { UserUpdatableFieldType } from '@/types/types';
 type UserStore = {
     user: UserType | undefined,
     setUser: (data: UserType) => void,
     getAccessToken: () => string | undefined,
     setProfile: (profileUrl: string) => void,
+    setUserUpdate:(updateFor:UserUpdatableFieldType, updateValue:string)=>void
 }
 const initialUser: UserType = {
     admin:null,
@@ -33,9 +35,20 @@ const useUserStore = create<UserStore>()(
             },
             setProfile: (profileUrl: string) =>{
                 const user = get().user;
-                if(!user) return undefined;
+                if(!user) return;
                 set({user: {...user, profileUrl}})
             },
+            setUserUpdate: (updateFor:UserUpdatableFieldType, updateValue:string)=>{
+                const user = get().user;
+                if(!user) return;
+                if(updateFor === 'bio' || updateFor === 'website' || updateFor === 'domainUrl'){
+                    const admin = user.admin;
+                    if(!admin) return;
+                    admin[updateFor] = updateValue;
+                }
+                else user[updateFor] = updateValue;
+                set({user:user});
+            }
         }),
         {
             name: 'user-data',
