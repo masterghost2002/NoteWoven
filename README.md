@@ -1,6 +1,6 @@
 # NoteWovenPrerequisites
 
-Welcome to NoteWoven, an open-source note-taking and to-do app inspired by the functionality of Notion and Trello. NoteWoven seamlessly combines the flexibility of note-taking with the organization of task management, all in a sleek, user-friendly interface.
+Welcome to NoteWoven, an open-source and self hosted note-taking and to-do app inspired by the functionality of Notion and Trello. NoteWoven seamlessly combines the flexibility of note-taking with the organization of task management, all in a sleek, user-friendly interface.
 
 ## Features
 - **Note-Taking**: Capture your thoughts, meeting notes, and research in a beautifully organized space.
@@ -12,16 +12,16 @@ Welcome to NoteWoven, an open-source note-taking and to-do app inspired by the f
 - **Collaboration**: Share your notes and collaborate in real-time with others.
 
 ## Tech Stack
-- **Frontend**: React with TypeScript and Tailwind CSS for a responsive, modern UI.
+- **Frontend**: NextJS with TypeScript and Tailwind CSS for a responsive, modern UI.
 - **Backend**: Express and TypeScript, offering a robust and scalable server-side solution.
-- **Database**: MongoDB, providing a flexible, document-oriented database.
+- **Database**:Prisma, MongoDB, providing a flexible, document-oriented database.
 - **PWA**: Progressive Web App capabilities for offline usage and enhanced mobile experience.
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js
-- MongoDB
+- yarn
 
 ### Installation
 
@@ -31,26 +31,14 @@ Welcome to NoteWoven, an open-source note-taking and to-do app inspired by the f
    cd NoteWoven
    ```
 
-2. **Install Backend Dependencies**
+2. **Install Dependencies**
    ```bash
-   cd backend
-   yarn install
+   yarn install-dev
    ```
 
-3. **Start the Backend Server**
+3. **Start the Application**
    ```bash
-   yarn start
-   ```
-
-4. **Install Frontend Dependencies**
-   ```bash
-   cd ../frontend
-   yarn install
-   ```
-
-5. **Start the Frontend Application**
-   ```bash
-   yarn start
+   yarn run dev
    ```
 
 Now, visit `http://localhost:3000` in your browser to see NoteWoven in action!
