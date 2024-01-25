@@ -1,6 +1,7 @@
 "use client";
 import ProfileCard from "@/components/Profile/ProfileCard";
 import UserInformation from "@/components/Profile/UserInformation";
+import AdminInformation from "@/components/Profile/AdminInformation";
 import useUserStore from "@/store/useUserStore";
 import { useUserSyncStore } from "@/store/useUserStore";
 import { UserUpdatableFieldType } from "@/types/types";
@@ -46,6 +47,10 @@ export default function ProfileSettingsPage() {
       />
       <UserInformation 
         user={user} 
+        updateUserField={updateUserField}
+      />
+      <AdminInformation
+        admin={user.admin}
         updateUserField={updateUserField}
       />
     </div>
